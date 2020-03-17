@@ -56,7 +56,7 @@ class DisjointSetByRankWPC:
             c = self.links[e]
             self.links[e] = p
             e = c
-        
+
         return p
 
     def PrintDisjointSet(self):
@@ -77,39 +77,40 @@ class DisjointSetByRankWPC:
         print('\n', end = "")
 
 
-"""
-Example of Use
-Example comes from Plank's notes: http://web.eecs.utk.edu/~jplank/plank/classes/cs302/Notes/Disjoint/
-"""
-d = DisjointSetByRankWPC(10)
-d.PrintDisjointSet()
-s01 = d.Union(0, 1)
-s23 = d.Union(2, 3)
-s45 = d.Union(4, 5)
-d.PrintDisjointSet()
-print(d.Find(0), d.Find(1))
+if __name__ == '__main__':
+    """
+    Example of Use
+    Example comes from Plank's notes: http://web.eecs.utk.edu/~jplank/plank/classes/cs302/Notes/Disjoint/
+    """
+    d = DisjointSetByRankWPC(10)
+    d.PrintDisjointSet()
+    s01 = d.Union(0, 1)
+    s23 = d.Union(2, 3)
+    s45 = d.Union(4, 5)
+    d.PrintDisjointSet()
+    print(d.Find(0), d.Find(1))
 
-s0123 = d.Union(s01, s23); 
-s456 = d.Union(s45, 6); 
-s4567 = d.Union(s456, 7); 
-s45678 = d.Union(s4567, 8);
-d.PrintDisjointSet()
+    s0123 = d.Union(s01, s23);
+    s456 = d.Union(s45, 6);
+    s4567 = d.Union(s456, 7);
+    s45678 = d.Union(s4567, 8);
+    d.PrintDisjointSet()
 
-print(d.Find(1), d.Find(2), d.Find(4), d.Find(7))
-d.PrintDisjointSet()
+    print(d.Find(1), d.Find(2), d.Find(4), d.Find(7))
+    d.PrintDisjointSet()
 
-s012345678 = d.Union(s0123, s45678)
-d.PrintDisjointSet()
+    s012345678 = d.Union(s0123, s45678)
+    d.PrintDisjointSet()
 
-print(d.Find(3));
-print(d.Find(5));
-print(d.Find(7));
-d.PrintDisjointSet();
+    print(d.Find(3));
+    print(d.Find(5));
+    print(d.Find(7));
+    d.PrintDisjointSet();
 
-print(d.Find(0));
-d.PrintDisjointSet();
+    print(d.Find(0));
+    d.PrintDisjointSet();
 
-print(d.Find(4));
-print(d.Find(6));
-print(d.Find(8));
-d.PrintDisjointSet();
+    print(d.Find(4));
+    print(d.Find(6));
+    print(d.Find(8));
+    d.PrintDisjointSet();
