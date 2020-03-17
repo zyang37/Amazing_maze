@@ -40,11 +40,14 @@ class DisjointSetByRankWPC:
         the parents' links to the children.
         """
         c = -1;
-        while self.links[e] != -1:
-            p = self.links[e]
-            self.links[e] = c
-            c = e
-            e = p
+        try:
+            while self.links[e] != -1:
+                p = self.links[e]
+                self.links[e] = c
+                c = e
+                e = p
+        except:
+            return -1
 
         """
         Now, travel back to the original element, setting
