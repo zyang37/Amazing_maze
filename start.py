@@ -62,6 +62,7 @@ def main():
         drawScore(score,screen)
         pygame.display.update()
         FPSCLOCK.tick(30)
+
 def random_grid(listGrid):
     s = []
     for i in range(len(listGrid)):
@@ -70,6 +71,7 @@ def random_grid(listGrid):
                 s.append([j,i])
     random.shuffle(s)
     return s[0]
+
 def draw_maze(screen):
    for row in range(len(grid)):
        for column in range(len(grid[0])):
