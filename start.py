@@ -36,7 +36,7 @@ pygame.display.set_icon(icon)
 score = 0
 
 def main():
-    global score,BASICFONT,FPSCLOCK
+    global score, BASICFONT, FPSCLOCK, grid
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     screen = pygame.display.set_mode(resolution)
@@ -62,6 +62,7 @@ def main():
                 return
         if current_position==star_store:
             star_store = (random_grid(grid))
+            delete_random_wall(grid)
             score+=1
 
         draw_maze(screen)
