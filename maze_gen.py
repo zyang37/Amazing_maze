@@ -5,9 +5,10 @@ def maze_gen(r, c):
     maze = []
 
     # Initialize the maze
-    row = [1]*(r*2-1)
-    col = [row]*(c*2-1)
-    maze = col
+    temp = [1]*(r*2-1)
+    maze = []
+    for i in range(c*2-1):
+        maze.append(temp[:])
 
     for i in range(len(maze)):
         if i%2 == 1:
@@ -31,11 +32,7 @@ def maze_gen(r, c):
             walls.append(c1)
 
     ncomp = r*c;
-    count = 0
     while ncomp > 1:
-        count += 1
-        if count == r*c:
-            break
         c1 = random.choice(walls)
         tmp = c1
         if (c1 < r*c):
