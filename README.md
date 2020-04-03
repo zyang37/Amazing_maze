@@ -6,8 +6,9 @@
 - Moving the character
 - Generating a random maze
 - A randomly appear star
-- when pick up the star, will update the score
-- when pick up the star, a random wall will disappear
+- Pick up the star!
+  - Get a higher score
+  - Destroy a random wall
 
 screenshot  
 <img src="img/sample2.png" width="60%">
