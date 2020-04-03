@@ -14,18 +14,18 @@ grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 '''
-grid = maze_gen(10, 10)
+grid = maze_gen(17, 17)
 
 resolution = (800, 800)
 
-cell_margin = 1
+cell_margin = 0.5
 
 cell_colors = (255, 255, 255), (255, 192, 203)
 
 current_position = [0, 1]
 
 # set  Character size
-object_size = (15, 15)
+object_size = (20, 20)
 
 #icon
 icon = pygame.image.load('img/icon.png')
