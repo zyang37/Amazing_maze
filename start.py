@@ -14,9 +14,9 @@ grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 '''
-grid = maze_gen(10, 10)
+grid = maze_gen(50, 50)
 
-resolution = (700, 700)
+resolution = (750, 750)
 
 cell_margin = 1
 
@@ -24,10 +24,12 @@ cell_colors = (255, 255, 255), (255, 192, 203)
 
 current_position = [0, 1]
 
+object_size = (10, 10)
+
 #icon
 icon = pygame.image.load('img/icon.png')
 star = pygame.image.load('img/star.png')
-star = pygame.transform.scale(star,(30,30))
+star = pygame.transform.scale(star,object_size)
 pygame.display.set_icon(icon)
 #score
 score = 0
@@ -40,6 +42,7 @@ def main():
     screen.fill(cell_colors[1])
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
     playerImg = pygame.image.load('img/mushroom.png')
+    playerImg = pygame.transform.scale(playerImg, object_size)
     pygame.display.set_caption("Amazing Maze")
     star_store = (random_grid(grid))
     while True:
