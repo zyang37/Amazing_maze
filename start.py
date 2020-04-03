@@ -14,17 +14,17 @@ grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 '''
-grid = maze_gen(50, 50)
+grid = maze_gen(45, 45)
 
-resolution = (750, 750)
+resolution = (800, 800)
 
-cell_margin = 1
+cell_margin = 0.5
 
 cell_colors = (255, 255, 255), (255, 192, 203)
 
 current_position = [0, 1]
 
-object_size = (10, 10)
+object_size = (8, 8)
 
 #icon
 icon = pygame.image.load('img/icon.png')
