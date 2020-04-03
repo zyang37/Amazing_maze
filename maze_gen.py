@@ -1,63 +1,78 @@
 import random
+from disjoint_rank import *
 
-from disjoint_rank import DisjointSetByRankWPC
+def maze_gen(r, c):
+    maze = []
 
-'''
-void rand_maze {
-  // begin with a rectangular maze of all closed cells
-  // numrows = number of rows of cells;
-  // numcols = number of columns of cells;
-  start = cell at (0,0);
-  goal  = cell at (numrows-1, numcols-1);
-  numcells = numrows * numcols;
-  Partition p(numcells); // p represents the maze components
+    # Initialize the maze
+    row = [1]*(r*2-1)
+    col = [row]*(c*2-1)
+    maze = col
 
-  // goal is not reachable from start
-  while (!p.Find(start, goal)) {
-    edge = randomly select a wall;
-    x = edge.x;
-    y = edge.y;
-    if(!p.Find(x,y)) {
-      remove edge;
-      // x and y now in same component
-      p.Union(x,y);
-    }
-  }
-}
-'''
-class grid:
-    def __init__(self, size=0):
-        self.size = size
-        self.grid = [0] * self.size
-        #print(self.grid)
+    for i in range(len(maze)):
+        if i%2 == 1:
+            maze[i] = [0 for val in maze[i]]
+        else:
+            for j in range(len(maze[i])):
+                if j%2 == 1:
+                    maze[i][j] = 0
 
-    def get_rand_loc(self):
-        x = random.randint(0, self.size-1)
-        return x
+    walls = []
+    d = DisjointSetByRankWPC(r*c)
 
-    def set_one(self, i):
-        print(i)
-        self.grid[i] = 1
+    for row in range(r-1):
+        for col in range(c):
+            c1 = row*c + col
+            walls.append(c1)
 
+    for row in range(r):
+        for col in range(c-1):
+            c1 = (row*c + col) + r*c
+            walls.append(c1)
 
-def maze_gen(numrows, numcols):
-    start = 0
-    numcells = numrows * numcols
-    goal  = numcells - 1
-    g = grid(numcells)
-    p = DisjointSetByRankWPC(numcells)
+    ncomp = r*c;
+    count = 0
+    while ncomp > 1:
+        count += 1
+        if count == r*c:
+            break
+        c1 = random.choice(walls)
+        tmp = c1
+        if (c1 < r*c):
+            c2 = c1 + c
+            row1 = int(c1 / c);
+            column1 = c1 % c;
+            maze_row = 2 * row1 + 1;
+            maze_colume = 2 * column1;
+        else:
+            c1 = c1 - r*c
+            c2 = c1 + 1
+            row1 = int(c1 / c);
+            column1 = c1 % c;
+            maze_row = 2 * row1;
+            maze_colume = 2 * column1 + 1;
 
-    while p.Find(start) != goal:
-        x = g.get_rand_loc()
-        y = g.get_rand_loc()
-        if p.Find(x) != y:
-            g.set_one(x)
-            g.set_one(y)
-            p.Union(x,y)
+        s1 = d.Find(c1)
+        s2 = d.Find(c2)
+        if s1 != s2:
+            d.Union(s1, s2)
+            walls.remove(tmp)
+            #print(int(maze_row), int(maze_colume))
+            maze[maze_row][maze_colume] = 1;
+            ncomp = ncomp - 1
+        else:
+            continue
 
-    return g.grid
+    maze.insert(0, [0]*len(maze[0]))
+    maze.append([0]*len(maze[0]))
 
+    for i in range(len(maze)):
+        temp = maze[i][:]
+        temp.insert(0, 0)
+        temp.append(0)
+        maze[i] = temp
 
-if __name__ == '__main__':
-    m = maze_gen(3,3)
-    print(m)
+    maze[1][0] = 1
+    maze[-2][-1] = 1
+
+    return maze

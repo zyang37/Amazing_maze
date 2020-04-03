@@ -1,6 +1,7 @@
 import pygame , random
 from pygame.locals import *
-
+from maze_gen import *
+'''
 grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0],
         [0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0],
@@ -12,6 +13,9 @@ grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0],
         [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+'''
+grid = maze_gen(10, 10)
+
 resolution = (700, 700)
 
 cell_margin = 1
@@ -23,7 +27,7 @@ current_position = [0, 1]
 #icon
 icon = pygame.image.load('img/icon.png')
 star = pygame.image.load('img/star.png')
-star = pygame.transform.scale(star,(40,40))
+star = pygame.transform.scale(star,(30,30))
 pygame.display.set_icon(icon)
 #score
 score = 0
