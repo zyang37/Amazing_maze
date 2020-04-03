@@ -3,4 +3,4 @@
 - The working game is in master branch
 
 ### Current Progress
-<img src="img/sample1.png" width="70%">
+<img src="img/sample2.png" width="60%">
