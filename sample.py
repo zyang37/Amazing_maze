@@ -7,6 +7,8 @@
 
 import pygame
 from pygame.locals import *
+import tkinter as tk
+import tkinter.font as tkFont
 
 grid = [[0, 0, 0, 0, 0],
        [1, 1, 0, 0, 0],
@@ -20,6 +22,7 @@ player_character = "rus"
 player_color = (255, 255, 255)
 player_size = 60
 current_position = [0, 1]
+start = False
 
 def main():
    pygame.init()
@@ -72,6 +75,53 @@ def move(dx, dy):
        current_position[0] = nx
        current_position[1] = ny
 
+def startGame():
+    global start
+    start = True
+
+def menu():
+    root = tk.Tk()
+    root.title("Amazing Maze")
+
+    #the background image path
+    background_image = tk.PhotoImage(file = "src/pic2.png")
+
+    canvas = tk.Canvas(root, height = 900, width = 900)
+    background_label = tk.Label(root, image=background_image)
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    canvas.grid()
+
+    fontStyle = tkFont.Font(family="Lucida Grande", size=40)
+    gameLabel = tk.Label(root, bg = 'white', text="Amazing Maze", font = fontStyle)
+    gameLabel.place(x = 250, y = 0)
+
+    startButton = tk.Button(root, bg="white", bd = 3, text = "Start game", command = lambda:[startGame(), root.destroy()], padx = 30, pady = 20)
+    startButton.place(x = 300, y =700)
+
+    loadButton = tk.Button(root, bg = 'white', bd = 3, text = "Load game", padx = 30, pady = 20)
+    loadButton.place(x = 440, y = 700)
+
+    difficultyButton = tk.Menubutton(root, bg = "white", bd = 3, text="Diffifulty", padx = 30, pady = 20)
+    difficultyButton.place(x=580, y =700)
+
+    difficultyButton.menu =  tk.Menu ( difficultyButton, tearoff = 0 )
+    difficultyButton["menu"] =  difficultyButton.menu
+
+    difficultyButton.menu.add_checkbutton ( label="easy", variable=tk.IntVar() )
+    difficultyButton.menu.add_checkbutton ( label="medium", variable=tk.IntVar() )
+    difficultyButton.menu.add_checkbutton ( label="hard", variable=tk.IntVar() )
+
+    root.mainloop()
+    
+    return 
+
 if __name__ == "__main__":
-   main()
-   pygame.quit()
+    
+    level = menu()
+
+    print(level)
+    if start == True:
+        main()
+    
+    pygame.quit()
