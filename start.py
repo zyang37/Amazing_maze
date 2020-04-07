@@ -2,6 +2,7 @@ import pygame , random
 from pygame.locals import *
 from maze_gen import *
 from helper import *
+from Startmenu import *
 
 # helper functions
 def find_random_spot(listmaze):
@@ -140,5 +141,6 @@ def main():
 
 
 if __name__ == "__main__":
+   startMenu()
    main()
    pygame.quit()
