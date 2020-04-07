@@ -36,7 +36,7 @@ def startMenu():
 
     # Create a Tkinter variable
     tkvar = StringVar(root)
-    tkvar.set('medium') # set the default option
+    tkvar.set('Difficulty') # set the default option
     popupMenu = OptionMenu(canvas, tkvar, 'easy','medium','hard','insane')
     popupMenu.config(width=15)
     popupMenu.place(relx=0.75, rely=0.84, anchor=CENTER)
