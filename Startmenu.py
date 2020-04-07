@@ -1,9 +1,14 @@
+def start(gameStat):
+    gameStat[0] = 1
+
 def startMenu():
 
     import tkinter as tk
     from tkinter import Text
     import tkinter.font as tkFont
     import os
+
+    gameStat = [0]
 
     root = tk.Tk()
     root.title("Amazing Maze")
@@ -21,7 +26,7 @@ def startMenu():
     gameLabel = tk.Label(root, bg = 'white', text="Amazing Maze", font = fontStyle)
     gameLabel.place(x = 250, y = 0)
 
-    startButton = tk.Button(root, bg="white", bd = 3, text = "Start game", padx = 30, pady = 20)
+    startButton = tk.Button(root, bg="white", bd = 3, text = "Start game", command = lambda:[start(gameStat), root.destroy()], padx = 30, pady = 20)
     startButton.place(x = 250, y =750)
 
     loadButton = tk.Button(root, bg = 'white', bd = 3, text = "Load game", padx = 30, pady = 20)
@@ -40,7 +45,7 @@ def startMenu():
 
     root.mainloop()
 
-    return 
+    return gameStat
 
 if __name__ == "__main__": 
     startMenu()

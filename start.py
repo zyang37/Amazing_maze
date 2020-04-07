@@ -141,6 +141,10 @@ def main():
 
 
 if __name__ == "__main__":
-   startMenu()
-   main()
-   pygame.quit()
+    gameStat = []
+    gameStat = startMenu()
+   
+    if(gameStat[0]):
+        main()
+    
+    pygame.quit()
