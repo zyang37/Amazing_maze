@@ -9,9 +9,12 @@
 - Pick up the star!
   - Get a higher score
   - Destroy a random wall
+- Added enemies
+- 4 Difficulty levels
+- Added a Start Menu
 
-screenshot  
-<img src="img/sample2.png" width="50%">
+#### Start Menu
+<img src="img/menu.png" width="35%">
 
 #### 4 Difficulty levels
 | Easy | Medium | Hard | insane |

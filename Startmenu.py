@@ -24,7 +24,7 @@ def startMenu():
 
     canvas.grid()
 
-    fontStyle = tkFont.Font(family="Lucida Grande", size=50)
+    fontStyle = tkFont.Font(family="Lucida Grande", size=60)
     gameLabel = tk.Label(root, bg = 'white', text="Amazing Maze", font = fontStyle)
     gameLabel.place(relx=0.5, rely=0.1, anchor=CENTER)
 
@@ -51,7 +51,7 @@ def startMenu():
             gameLabel.config(bg='#FFB6C1')
         elif tkvar.get()=='medium':
             canvas.configure(background='#90EE90')
-            gameLabel.config(bg='##90EE90')
+            gameLabel.config(bg='#90EE90')
         elif tkvar.get()=='hard':
             canvas.configure(background='#00BFFF')
             gameLabel.config(bg='#00BFFF')
