@@ -11,4 +11,10 @@
   - Destroy a random wall
 
 screenshot  
-<img src="img/sample2.png" width="60%">
+<img src="img/sample2.png" width="50%">
+
+#### 4 Difficulty levels
+<img src="img/easy.png" width="23%">
+<img src="img/mid.png" width="23%">
+<img src="img/hard.png" width="23%">
+<img src="img/ins.png" width="23%">
