@@ -14,7 +14,7 @@
 - Added a Start Menu
 
 #### Start Menu
-<img src="img/menu.png" width="35%">
+<img src="img/menu.png" width="45%">
 
 #### 4 Difficulty levels
 | Easy | Medium | Hard | insane |
