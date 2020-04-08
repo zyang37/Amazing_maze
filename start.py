@@ -2,7 +2,7 @@ import pygame , random
 from pygame.locals import *
 from maze_gen import *
 from helper import *
-from Startmenu import *
+from Startmenu import startMenu
 
 # helper functions
 def find_random_spot(listmaze):
@@ -50,7 +50,7 @@ def move(dx, dy):
        current_position[0] = nx
        current_position[1] = ny
 
-def move_enemy():
+def move_enemy(enemy_position):
     tmp = Arandom_move()
     x = enemy_position[0]
     y = enemy_position[1]
@@ -58,6 +58,7 @@ def move_enemy():
     if nx >= 0 and nx < len(maze) and ny >= 0 and ny < len(maze[0]) and maze[ny][nx]:
        enemy_position[0] = nx
        enemy_position[1] = ny
+    return enemy_position
 
 # ========================================== main ==========================================
 '''
@@ -73,36 +74,20 @@ maze = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 '''
-# maze infor
-maze = maze_gen(17, 17)
-resolution = (800, 800)
-cell_margin = 0.5
-cell_colors = (255, 255, 255), (255, 192, 203)
 
-# starting point
-current_position = [0, 1]
-enemy_position = find_random_spot(maze)
-
-# set objects size
-object_size = (20, 20)
-
-#icon
-icon = pygame.image.load('img/icon.png')
-star = pygame.image.load('img/star.png')
-enemy = pygame.image.load('img/enemy.png')
-playerImg = pygame.image.load('img/mushroom.png')
-
-playerImg = pygame.transform.scale(playerImg, object_size)
-star = pygame.transform.scale(star,object_size)
-enemy = pygame.transform.scale(enemy,object_size)
-
-pygame.display.set_icon(icon)
-#score
-score = 0
-
-def main():
-    global score, BASICFONT, FPSCLOCK, maze
+def main(level, enemies):
+    global score, BASICFONT, FPSCLOCK, maze, resolution
     pygame.init()
+
+    icon = pygame.image.load('img/icon.png')
+    star = pygame.image.load('img/star.png')
+    enemy = pygame.image.load('img/enemy.png')
+    playerImg = pygame.image.load('img/mushroom.png')
+    playerImg = pygame.transform.scale(playerImg, object_size)
+    star = pygame.transform.scale(star,object_size)
+    enemy = pygame.transform.scale(enemy,object_size)
+    pygame.display.set_icon(icon)
+
     FPSCLOCK = pygame.time.Clock()
     screen = pygame.display.set_mode(resolution)
     screen.fill(cell_colors[1])
@@ -132,19 +117,64 @@ def main():
         draw_player(playerImg, screen)
         draw_star(star,screen,star_store)
         # test
-        move_enemy()
-        draw_star(enemy,screen,enemy_position)
+        for e in enemies:
+            enemy_position = e
+            enemy_position = move_enemy(enemy_position)
+            draw_star(enemy,screen,enemy_position)
         drawScore(score,screen)
         pygame.display.update()
-        FPSCLOCK.tick(30)
-
+        FPSCLOCK.tick(45)
 
 
 if __name__ == "__main__":
-    gameStat = []
-    gameStat = startMenu()
-   
-    if(gameStat[0][0]):
-        main()
-    
+
+    # Game loop
+    stat, level = startMenu()
+    print(stat[0])
+    print(level)
+
+    if stat[0]:
+        # maze
+        resolution = (850, 850)
+        current_position = [0, 1]
+        score = 0
+        enemy_num = 0
+        enemies = []
+
+        if level=='easy':
+            maze = maze_gen(6, 6)
+            object_size = (37, 37)
+            cell_margin = 0.5
+            # pink white
+            cell_colors = (255, 192, 203), (255, 255, 255)
+        elif level=='medium':
+            maze = maze_gen(10, 10)
+            object_size = (30, 30)
+            cell_margin = 0.5
+            # green white
+            cell_colors = (144,238,144),(255, 255, 255)
+            #enemy_position = find_random_spot(maze)
+            enemy_num = 1
+        elif level=='hard':
+            maze = maze_gen(18, 18)
+            object_size = (20, 20)
+            cell_margin = 0.5
+            # blue white
+            cell_colors = (0,191,255), (255, 255, 255)
+            #enemy_position = find_random_spot(maze)
+            enemy_num = 2
+        elif level=='insane':
+            maze = maze_gen(26, 26)
+            object_size = (15, 15)
+            cell_margin = 0.5
+            # red white
+            cell_colors = (220,20,60), (169,169,169)
+            enemy_num = 5
+
+        for i in range(enemy_num):
+            print(i)
+            enemies.append(find_random_spot(maze))
+
+        main(level, enemies)
+
     pygame.quit()

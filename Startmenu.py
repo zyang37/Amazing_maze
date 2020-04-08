@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import *
 #from tkinter import Text
 import tkinter.font as tkFont
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 import os
 
 def start(gameStat):
@@ -15,7 +15,7 @@ def startMenu():
     root = tk.Tk()
     root.title("Amazing Maze")
 
-    canvas = tk.Canvas(root, height = 900, width = 900)
+    canvas = tk.Canvas(root, height = 850, width = 850)
     canvas.pack(fill=tk.BOTH, expand=tk.YES)
 
     background_image = tk.PhotoImage(file = "backgrounds/maze.png")
@@ -36,14 +36,29 @@ def startMenu():
 
     # Create a Tkinter variable
     tkvar = StringVar(root)
-    tkvar.set('Difficulty') # set the default option
+    tkvar.set('medium') # set the default option
     popupMenu = OptionMenu(canvas, tkvar, 'easy','medium','hard','insane')
     popupMenu.config(width=15)
-    popupMenu.place(relx=0.75, rely=0.84, anchor=CENTER)
+    popupMenu.place(relx=0.75, rely=0.88, anchor=CENTER)
 
+    canvas.configure(background='#90EE90')
+    gameLabel.config(bg='#90EE90')
     # on change dropdown value
     def change_dropdown(*args):
         print(tkvar.get())
+        if tkvar.get()=='easy':
+            canvas.configure(background='#FFB6C1')
+            gameLabel.config(bg='#FFB6C1')
+        elif tkvar.get()=='medium':
+            canvas.configure(background='#90EE90')
+            gameLabel.config(bg='##90EE90')
+        elif tkvar.get()=='hard':
+            canvas.configure(background='#00BFFF')
+            gameLabel.config(bg='#00BFFF')
+        elif tkvar.get()=='insane':
+            canvas.configure(background='#F08080')
+            gameLabel.config(bg='#F08080')
+
     # link function to change dropdown
     tkvar.trace('w', change_dropdown)
 
@@ -59,10 +74,11 @@ def startMenu():
     '''
 
     root.mainloop()
-
     return gameStat, tkvar.get()
 
+'''
 if __name__ == "__main__":
     stat, level = startMenu()
     print(stat)
     print(level)
+'''
