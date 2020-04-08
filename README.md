@@ -16,4 +16,4 @@ screenshot
 #### 4 Difficulty levels
 | Easy | Medium | Hard | insane |
 | -------- | -------- | -------- | -------- |
-| <img src="img/easy.png" width="23%"> | <img src="img/mid.png" width="23%"> | <img src="img/hard.png" width="30%"> | <img src="img/ins.png" width="30%"> |
+| <img src="img/easy.png" width="100%"> | <img src="img/mid.png" width="100%"> | <img src="img/hard.png" width="100%"> | <img src="img/ins.png" width="100%"> |
