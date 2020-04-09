@@ -172,7 +172,7 @@ if __name__ == "__main__":
             enemy_num = 5
 
         for i in range(enemy_num):
-            print(i)
+            #print(i)
             enemies.append(find_random_spot(maze))
 
         main(level, enemies)
