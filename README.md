@@ -14,9 +14,9 @@
 - Added a Start Menu
 
 #### Game Play
-| You | Treasure | Enemy |
+| You | Enemy | Treasure |
 | :------: | :------: | :------:|
-|<img src="img/mushroom.png" width="200%">|<img src="img/star.png" width="10%">|<img src="img/enemy.png" width="60%">|
+|<img src="img/mushroom.png" width="100%">|<img src="img/enemy.png" width="35%">|<img src="img/star.png" width="10%">|
 
 #### Start Menu
 <img src="img/menu.png" width="45%">
