@@ -21,7 +21,7 @@
 | In the game, you play a mushroom |They are fast and mushroom is their favorite food | A star have the ability to destroy a random wall |
 
 ### *Start Menu*
-<img src="img/menu.png" width="50%">
+<img src="img/menu.png" width="45%">
 
 ### *4 Difficulty levels*
 | Easy | Medium | Hard | insane |
