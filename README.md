@@ -15,8 +15,8 @@
 
 #### Game Play
 | You | Treasure | Enemy |
-| --- | -------- | ----- |
-| <img src="img/mushroom.png"> | <img src="img/star.png" width="30%">  |<img src="img/enemy.png"> |
+| :------: | :------: | :------:|
+| <img src="img/mushroom.png" width="200%"> | <img src="img/star.png" width="10%">  |<img src="img/enemy.png" width="60%"> |
 
 #### Start Menu
 <img src="img/menu.png" width="45%">
