@@ -14,16 +14,16 @@
 - Added a Start Menu
 
 
-### **Game Play**
+### *Game Play*
 | You | Enemy | Treasure |
 |:-----:|:-----:|:-----:|
 |<img src="img/mushroom.png" width="60%">|<img src="img/enemy.png" width="50%">|<img src="img/star.png" width="15%">|
 | In the game, you play a mushroom |They are fast and mushroom is their favorite food | A star have the ability to destroy a random wall |
 
-### **Start Menu**
+### *Start Menu*
 <img src="img/menu.png" width="50%">
 
-### **4 Difficulty levels**
+### *4 Difficulty levels*
 | Easy | Medium | Hard | insane |
 | -------- | -------- | -------- | -------- |
 | <img src="img/easy.png" width="100%"> | <img src="img/mid.png" width="100%"> | <img src="img/hard.png" width="100%"> | <img src="img/ins.png" width="100%"> |
