@@ -234,6 +234,7 @@ if __name__ == "__main__":
 
     while 1:
         #if win==0:
+        print('StartMenu')
         stat, level = startMenu()
 
         if stat[0]:
@@ -282,6 +283,7 @@ if __name__ == "__main__":
                 enemies.append(find_random_spot(maze))
 
             main(level, enemies)
+            print('end')
         else:
             break
 
