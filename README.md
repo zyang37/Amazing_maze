@@ -17,6 +17,7 @@
 | You | Enemy | Treasure |
 | :------: | :------: | :------:|
 |<img src="img/mushroom.png" width="100%">|<img src="img/enemy.png" width="35%">|<img src="img/star.png" width="10%">|
+||They are fast and can kill you instantly  | A star have the ability to destroy a random wall |
 
 #### Start Menu
 <img src="img/menu.png" width="45%">
