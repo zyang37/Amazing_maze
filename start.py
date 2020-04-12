@@ -175,6 +175,7 @@ def main(level, enemies):
         pygame.display.update()
         FPSCLOCK.tick(45)
 
+    pygame.quit()
 
 if __name__ == "__main__":
     '''
@@ -282,7 +283,9 @@ if __name__ == "__main__":
                 #print(i)
                 enemies.append(find_random_spot(maze))
 
+            print(pygame.get_init())
             main(level, enemies)
+            pygame.quit()
             print('end')
         else:
             break
