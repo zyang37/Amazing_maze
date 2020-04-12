@@ -31,4 +31,4 @@
 ### *END*
 | Win | Game Over|
 | :---: | :---: |
-|<img src="img/win_sample.png">|<img src="img/over_sample.png">|
+|<img src="img/win_sample1.png">|<img src="img/over_sample.png">|
