@@ -27,3 +27,8 @@
 | Easy | Medium | Hard | insane |
 | -------- | -------- | -------- | -------- |
 | <img src="img/easy.png" width="100%"> | <img src="img/mid.png" width="100%"> | <img src="img/hard.png" width="100%"> | <img src="img/ins.png" width="100%"> |
+
+### *END*
+| WIN | Game Over|
+| :---: | :---: |
+|<img src="img/win_sample.png">|<img src="img/over_sample.png">|
