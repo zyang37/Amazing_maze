@@ -13,10 +13,15 @@
 - 4 Difficulty levels
 - Added a Start Menu
 
+#### Game Play
+| You | Treasure | Enemy |
+| --- | -------- | ----- |
+| <img src="img/easy.png"> | <img src="img/easy.png">  |<img src="img/easy.png"> |
+
 #### Start Menu
 <img src="img/menu.png" width="45%">
 
 #### 4 Difficulty levels
 | Easy | Medium | Hard | insane |
 | -------- | -------- | -------- | -------- |
-| <img src="img/easy.png" width="100%"> | <img src="img/mid.png" width="100%"> | <img src="img/hard.png" width="100%"> | <img src="img/ins.png" width="100%"> |
+| <img src="img/easy.png"> | <img src="img/mid.png" width="100%"> | <img src="img/hard.png" width="100%"> | <img src="img/ins.png" width="100%"> |
