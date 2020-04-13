@@ -1,5 +1,22 @@
 import random
 
+def distance(x1, x2):
+    return ((x1[0]-x2[0])**2 + (x1[1]-x2[1])**2)**0.5
+
+def delete_random_surround_wall(maze, pos):
+    total = len(maze) * len(maze[0])
+    count = 0
+    while 1:
+        if count == total:
+            break
+        r = random.randint(1,len(maze)-2)
+        c = random.randint(1,len(maze[r])-2)
+        count += 1
+        if maze[r][c] == 0 and distance([c,r], pos)==1.0:
+            print(distance([c,r], pos))
+            break
+    maze[r][c] = 1
+
 def delete_random_wall(maze):
     total = len(maze) * len(maze[0])
     count = 0
@@ -12,7 +29,6 @@ def delete_random_wall(maze):
         if maze[r][c] == 0:
             # print(r, c)
             break
-
     maze[r][c] = 1
 
 def Arandom_move():

@@ -137,7 +137,8 @@ def main(level, enemies):
         # star
         if current_position==star_store:
             star_store = find_random_spot(maze)
-            delete_random_wall(maze)
+            #delete_random_wall(maze)
+            delete_random_surround_wall(maze, current_position)
             score+=1
 
         # when the player get hint position, show the right path for 5 seconds
