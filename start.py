@@ -277,6 +277,7 @@ if __name__ == "__main__":
         #if win==0:
         print('StartMenu')
         stat, level = startMenu()
+        print(stat, level)
 
         if stat[0]:
             # maze
