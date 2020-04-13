@@ -13,7 +13,7 @@ def delete_random_surround_wall(maze, pos):
         c = random.randint(1,len(maze[r])-2)
         count += 1
         if maze[r][c] == 0 and distance([c,r], pos)==1.0:
-            print(distance([c,r], pos))
+            #print(distance([c,r], pos))
             break
     maze[r][c] = 1
 
