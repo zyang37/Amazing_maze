@@ -22,6 +22,9 @@ def startMenu():
     background_label = tk.Label(root, image=background_image)
     background_label.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 
+    icon = tk.PhotoImage(file = "img/icon.png")
+    root.iconphoto(False, icon)
+
     canvas.grid()
 
     fontStyle = tkFont.Font(family="Lucida Grande", size=60)
