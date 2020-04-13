@@ -214,7 +214,7 @@ def main(level, enemies):
             screen.blit(ANYKEYS,(resolution[0]/2 - ANYKEYS.get_width() // 2, resolution[0]/2 - ANYKEYS.get_height() // 2))
 
         pygame.display.update()
-        FPSCLOCK.tick(45)
+        FPSCLOCK.tick(60)
 
 
 if __name__ == "__main__":
