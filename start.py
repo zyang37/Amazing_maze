@@ -83,7 +83,7 @@ def main(level, enemies):
     pygame.init()
 
     icon = pygame.image.load('img/icon.png')
-    star = pygame.image.load('img/star.png')
+    star = pygame.image.load('img/shovel.png')
     enemy = pygame.image.load('img/enemy.png')
     playerImg = pygame.image.load('img/mushroom.png')
     exitlogo = pygame.image.load('img/exit.png')

@@ -15,7 +15,7 @@
 
 
 ### *Game Play*
-| You | Enemy | Treasure |
+| You | Enemy | Star | hint |
 |:-----:|:-----:|:-----:|
 |<img src="img/mushroom.png" width="60%">|<img src="img/enemy.png" width="50%">|<img src="img/star.png" width="15%">|
 | In the game, you play a mushroom |They are fast and mushroom is their favorite food | A star have the ability to destroy a random wall |
