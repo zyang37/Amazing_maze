@@ -20,8 +20,8 @@ def draw_maze(screen):
    for row in range(len(maze)):
        for column in range(len(maze[0])):
            screen.fill(cell_colors[maze[column][row]], get_cell_rect((row, column), screen))
-           if (maze[row][column] == 'x'):
-               score_value += 10
+           # if (maze[row][column] == 'x'):
+           #     score_value += 10
 
 def get_cell_rect(coordinates, screen):
    row, column = coordinates
@@ -87,10 +87,12 @@ def main(level, enemies):
     enemy = pygame.image.load('img/enemy.png')
     playerImg = pygame.image.load('img/mushroom.png')
     exitlogo = pygame.image.load('img/exit.png')
+    hint = pygame.image.load('img/hint.png')
     playerImg = pygame.transform.scale(playerImg, object_size)
     star = pygame.transform.scale(star,object_size)
     enemy = pygame.transform.scale(enemy,object_size)
     exitlogo = pygame.transform.scale(exitlogo,object_size)
+    hint = pygame.transform.scale(hint, object_size)
     pygame.display.set_icon(icon)
 
     FPSCLOCK = pygame.time.Clock()
@@ -98,8 +100,11 @@ def main(level, enemies):
     screen.fill(cell_colors[1])
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
     pygame.display.set_caption("Amazing Maze")
-    star_store = (find_random_spot(maze))
+    star_store = find_random_spot(maze)
+    hint_store = find_random_spot(maze)
 
+    hintTimer = False
+    enemyTimer = True
 
     exit_location = [len(maze)-1,len(maze[0])-2]
     #print(len(maze), len(maze[0]))
@@ -131,21 +136,56 @@ def main(level, enemies):
 
         # star
         if current_position==star_store:
-            star_store = (find_random_spot(maze))
+            star_store = find_random_spot(maze)
             delete_random_wall(maze)
             score+=1
+
+        # when the player get hint position, show the right path for 5 seconds
+        if current_position==hint_store:
+            hint_store = find_random_spot(maze)
+            show_path(maze, current_position[1], current_position[0])
+            start_ticks = pygame.time.get_ticks()
+            hintTimer = True
+
+        # timer start
+        if (hintTimer == True):
+            hintSeconds = (pygame.time.get_ticks()-start_ticks)/1000
+            if (hintSeconds > 5):
+                clear_path(maze)
+                hintTimer = False
+
+        # maze
         draw_maze(screen)
+
+        # player
         draw_player(playerImg, screen)
+
+        # star
         draw_star(star,screen,star_store)
+
+        # score
         drawScore(score,screen)
 
+        # hint
+        draw_star(hint, screen, hint_store)
+
+        # exit
         draw_star(exitlogo, screen, exit_location)
+
+        # enemies move
+        if (enemyTimer == True):
+            enemy_start_ticks = pygame.time.get_ticks()
+            enemyTimer = False
+
+        if ((pygame.time.get_ticks()-enemy_start_ticks)/1000 > 0.2):
+            enemyTimer = True
+            for e in enemies:
+                enemy_position = e
+                enemy_position = move_enemy(enemy_position)
 
         # display enemies
         for e in enemies:
-            enemy_position = e
-            enemy_position = move_enemy(enemy_position)
-            draw_star(enemy,screen,enemy_position)
+            draw_star(enemy,screen,e)
 
         if current_position in enemies:
             if not over:
@@ -156,6 +196,7 @@ def main(level, enemies):
             if not win:
                 print("WIN\n")
             win = 1
+
         # gameover or win
         if over:
             fontB = pygame.font.SysFont("comicsansms", 150)
@@ -175,7 +216,6 @@ def main(level, enemies):
         pygame.display.update()
         FPSCLOCK.tick(45)
 
-    pygame.quit()
 
 if __name__ == "__main__":
     '''
@@ -254,13 +294,13 @@ if __name__ == "__main__":
                 object_size = (37, 37)
                 cell_margin = 0.5
                 # pink white
-                cell_colors = (255, 192, 203), (255, 255, 255)
+                cell_colors = (255, 192, 203), (255, 255, 255), (255, 255, 0)
             elif level=='medium':
                 maze = maze_gen(10, 10)
                 object_size = (30, 30)
                 cell_margin = 0.5
                 # green white
-                cell_colors = (144,238,144),(255, 255, 255)
+                cell_colors = (144,238,144), (255, 255, 255), (255, 255, 0)
                 #enemy_position = find_random_spot(maze)
                 enemy_num = 1
             elif level=='hard':
@@ -268,7 +308,7 @@ if __name__ == "__main__":
                 object_size = (20, 20)
                 cell_margin = 0.5
                 # blue white
-                cell_colors = (0,191,255), (255, 255, 255)
+                cell_colors = (0,191,255), (255, 255, 255), (255, 255, 0)
                 #enemy_position = find_random_spot(maze)
                 enemy_num = 2
             elif level=='insane':
@@ -276,16 +316,14 @@ if __name__ == "__main__":
                 object_size = (15, 15)
                 cell_margin = 0.5
                 # red white
-                cell_colors = (220,20,60), (169,169,169)
+                cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
                 enemy_num = 5
 
             for i in range(enemy_num):
                 #print(i)
                 enemies.append(find_random_spot(maze))
 
-            print(pygame.get_init())
             main(level, enemies)
-            pygame.quit()
             print('end')
         else:
             break

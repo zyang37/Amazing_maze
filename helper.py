@@ -16,9 +16,30 @@ def delete_random_wall(maze):
     maze[r][c] = 1
 
 def Arandom_move():
-    while 1:
-        x = random.randint(-1,1)
-        y = random.randint(-1,1)
-        if x==0 or y==0:
-            break
-    return (x, y)
+    directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    direction = random.choice(directions)
+    return direction
+
+def show_path(maze, row, col):
+    if (row == len(maze) - 1 and col == len(maze[0]) - 2 ):
+        return True
+    elif (row < 0 or col < 0 or row >= len(maze) or col >= len(maze[0])):
+        return False
+    elif (maze[row][col] == 1):
+        maze[row][col] = 2
+
+        result = show_path(maze, row - 1, col) or show_path(maze, row + 1, col) or show_path(maze, row, col - 1) or show_path(maze, row, col + 1)
+
+        if (result == False):
+            maze[row][col] = 1
+
+        return result
+
+    else:
+        return False
+
+def clear_path(maze):
+    for row in range(len(maze)):
+        for col in range(len(maze[0])):
+            if (maze[row][col] == 2):
+                maze[row][col] = 1;
