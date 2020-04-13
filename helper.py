@@ -22,14 +22,14 @@ def delete_random_surround_wall(maze, pos):
                 #print(distance([c,r], pos))
                 found = True
                 break
-            if distance([c,r], pos) <= 2:
+            if distance([c,r], pos) <= 1.5:
                 temp.append([c,r])
     if found:
         maze[r][c] = 1
     else:
         rp = random.choice(temp)
-        maze[rp[0]][rp[1]] = 1
-        print(distance([rp[0],rp[1]], pos))
+        maze[rp[1]][rp[0]] = 1
+        print(distance([rp[1],rp[0]], pos))
 
 def delete_random_wall(maze):
     total = len(maze) * len(maze[0])
