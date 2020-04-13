@@ -95,13 +95,19 @@ def main(level, enemies):
     hint = pygame.transform.scale(hint, object_size)
     pygame.display.set_icon(icon)
 
+    print("1: {}".format(pygame.display.get_init()))
     FPSCLOCK = pygame.time.Clock()
     screen = pygame.display.set_mode(resolution)
+    print("2: {}".format(pygame.display.get_init()))
     screen.fill(cell_colors[1])
+    print("3: {}".format(pygame.display.get_init()))
+    #BASICFONT = pygame.font.SysFont("comicsansms", 18)
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+    print("4: {}".format(pygame.display.get_init()))
     pygame.display.set_caption("Amazing Maze")
     star_store = find_random_spot(maze)
     hint_store = find_random_spot(maze)
+    #print("end")
 
     hintTimer = False
     enemyTimer = True
@@ -112,6 +118,7 @@ def main(level, enemies):
     over = 0
     win = 0
 
+    print("start loop")
     while True:
         for event in pygame.event.get():
             if event.type == KEYDOWN and (win or over):
