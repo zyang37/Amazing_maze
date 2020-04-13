@@ -6,16 +6,30 @@ def distance(x1, x2):
 def delete_random_surround_wall(maze, pos):
     total = len(maze) * len(maze[0])
     count = 0
+    found = False
+    temp = []
     while 1:
         if count == total:
+            if len(temp)==0:
+                temp.append([c,r])
             break
         r = random.randint(1,len(maze)-2)
         c = random.randint(1,len(maze[r])-2)
         count += 1
-        if maze[r][c] == 0 and distance([c,r], pos)==1.0:
-            #print(distance([c,r], pos))
-            break
-    maze[r][c] = 1
+
+        if maze[r][c] == 0:
+            if distance([c,r], pos)==1.0:
+                #print(distance([c,r], pos))
+                found = True
+                break
+            if distance([c,r], pos) <= 2:
+                temp.append([c,r])
+    if found:
+        maze[r][c] = 1
+    else:
+        rp = random.choice(temp)
+        maze[rp[0]][rp[1]] = 1
+        print(distance([rp[0],rp[1]], pos))
 
 def delete_random_wall(maze):
     total = len(maze) * len(maze[0])

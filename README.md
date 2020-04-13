@@ -18,7 +18,7 @@
 | You | Enemy | Shovel | Hint Bell |
 |:-----:|:-----:|:-----:| :-----: |
 |<img src="img/mushroom.png" width="60%"> | <img src="img/enemy.png" width="50%">|<img src="img/shovel.png" width="30%"> | <img src="img/hint.png" width="60%"> |
-| In the game, you play a mushroom |They are fast and mushroom is their favorite food | The shovel can destroy a random wall | The Hint Bell will show you a possible path for 5 seconds |
+| In the game, you play a mushroom |They are fast and mushroom is their favorite food | The shovel can destroy a surrounding wall | The Hint Bell will show you a possible path for 5 seconds |
 
 ### *Start Menu*
 <img src="img/menu.png" width="45%">
