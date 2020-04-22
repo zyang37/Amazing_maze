@@ -74,5 +74,42 @@ def clear_path(maze):
             if (maze[row][col] == 2):
                 maze[row][col] = 1;
 
-def save_game(maze):
+def save_game(maze, level, current_position):
+    f = open("savedGame/save.txt","w+")
+    
+    #write the current position
+    f.write("%d %d\r\n" % (current_position[0], current_position[1]))
+    #write the difficulty level
+    f.write("%s\r\n" % level)
+
+    for i in maze:
+        for j in i:
+            f.write("%d " % j)
+        f.write("\r\n") 
+
+def read_maze():
+    maze = []
+    
+    f = open("savedGame/save.txt", "r")
+
+    if f.mode != 'r':
+        return 0
+
+    current_position = [int(x) for x in f.readline()[:-1].split()]
+    #print(current_position)
+    level = f.readline()[:-1]
+
+    f1 = f.readlines()
+   
+
+    for x in f1:
+        temp = []
+        for y in x.split():
+            temp.append(int(y))
+        
+        maze.append(temp)
+    
+
+    return maze, level, current_position
+
     

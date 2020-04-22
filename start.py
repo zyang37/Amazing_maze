@@ -106,15 +106,15 @@ def main(level, enemies):
     hint = pygame.transform.scale(hint, object_size)
     pygame.display.set_icon(icon)
 
-    print("1: {}".format(pygame.display.get_init()))
+    #print("1: {}".format(pygame.display.get_init()))
     FPSCLOCK = pygame.time.Clock()
     screen = pygame.display.set_mode(resolution)
-    print("2: {}".format(pygame.display.get_init()))
+    #print("2: {}".format(pygame.display.get_init()))
     screen.fill(cell_colors[1])
-    print("3: {}".format(pygame.display.get_init()))
+    #print("3: {}".format(pygame.display.get_init()))
     #BASICFONT = pygame.font.SysFont("comicsansms", 18)
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    print("4: {}".format(pygame.display.get_init()))
+    #print("4: {}".format(pygame.display.get_init()))
     pygame.display.set_caption("Amazing Maze")
     #star_store = find_random_spot(maze)
     #hint_store = find_random_spot(maze)
@@ -130,7 +130,7 @@ def main(level, enemies):
     over = 0
     win = 0
 
-    print("start loop")
+    #print("start loop")
     while True:
         for event in pygame.event.get():
             if event.type == KEYDOWN and (win or over):
@@ -149,7 +149,8 @@ def main(level, enemies):
                 elif key == K_LEFT:
                     move(-1, 0)
             elif event.type == QUIT:
-                print("dsdasdasdasda")
+                save_game(maze, level, current_position)
+                print("maze saved")
                 pygame.quit()
                 sys.exit()
                 #return
@@ -298,7 +299,7 @@ if __name__ == "__main__":
         #if win==0:
         print('StartMenu')
         stat, level = startMenu()
-        print(stat, level)
+        #print(stat, level)
 
         if stat[0]:
             # maze
@@ -310,15 +311,27 @@ if __name__ == "__main__":
 
             #if win and level!="insane":
             #    level = levels[levels.index(level) + 1]
+            if(stat[0] == 2):
+                temp = read_maze()
+
+                if(temp != 0):
+                    maze = temp[0]
+                    level = temp[1]
+                    current_position = temp[2]
+
 
             if level=='easy':
-                maze = maze_gen(6, 6)
+                if(stat[0] == 1):
+                    maze = maze_gen(6, 6)
+                
                 object_size = (37, 37)
                 cell_margin = 0.5
                 # pink white
                 cell_colors = (255, 192, 203), (255, 255, 255), (255, 255, 0)
             elif level=='medium':
-                maze = maze_gen(10, 10)
+                if(stat[0] == 1):
+                    maze = maze_gen(10, 10)
+
                 object_size = (30, 30)
                 cell_margin = 0.5
                 # green white
@@ -326,7 +339,9 @@ if __name__ == "__main__":
                 #enemy_position = find_random_spot(maze)
                 enemy_num = 2
             elif level=='hard':
-                maze = maze_gen(18, 18)
+                if(stat[0] == 1):
+                    maze = maze_gen(18, 18)
+
                 object_size = (20, 20)
                 cell_margin = 0.5
                 # blue white
@@ -334,12 +349,16 @@ if __name__ == "__main__":
                 #enemy_position = find_random_spot(maze)
                 enemy_num = 5
             elif level=='insane':
-                maze = maze_gen(26, 26)
+                if(stat[0] == 1):
+                    maze = maze_gen(26, 26)
+
                 object_size = (15, 15)
                 cell_margin = 0.5
                 # red white
                 cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
                 enemy_num = 10
+
+            
 
             for i in range(enemy_num):
                 #print(i)

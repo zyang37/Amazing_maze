@@ -8,6 +8,9 @@ import os
 def start(gameStat):
     gameStat[0] = 1
 
+def load(gameStat):
+    gameStat[0] = 2
+
 def startMenu():
 
     gameStat = [0]
@@ -31,10 +34,10 @@ def startMenu():
     gameLabel = tk.Label(root, bg = 'white', text="Amazing Maze", font = fontStyle)
     gameLabel.place(relx=0.5, rely=0.1, anchor=CENTER)
 
-    startButton = tk.Button(root, bg="white", bd = 3, text = "Start game", command = lambda:[start(gameStat), root.destroy()], padx = 50, pady = 30)
+    startButton = tk.Button(root, bg="white", bd = 3, text = "Start a new game", command = lambda:[start(gameStat), root.destroy()], padx = 50, pady = 30)
     startButton.place(relx=0.25, rely=0.89, anchor=CENTER)
 
-    loadButton = tk.Button(root, bg = 'white', bd = 3, text = "Load game", padx = 50, pady = 30)
+    loadButton = tk.Button(root, bg = 'white', bd = 3, text = "Load game", command = lambda:[load(gameStat), root.destroy()],padx = 50, pady = 30)
     loadButton.place(relx=0.5, rely=0.89, anchor=CENTER)
 
     # Create a Tkinter variable
