@@ -135,7 +135,7 @@ def main(level, enemies):
         for event in pygame.event.get():
             if event.type == KEYDOWN and (win or over):
                 print("key press!")
-                time.sleep(2)
+                #time.sleep(1)
                 pygame.quit()
                 return
             elif event.type == KEYDOWN:
