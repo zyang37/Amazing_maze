@@ -16,6 +16,17 @@ def find_random_spot(listmaze):
     random.shuffle(s)
     return s[0]
 
+def find_spot_center(listmaze):
+    s = []
+    for i in range(len(listmaze)):
+        for j in range(len(listmaze[0])):
+            if listmaze[i][j] == 1:
+                s.append([j,i])
+    while distance(s[0], [0,1])<6 or distance(s[0], [len(listmaze)-1,len(listmaze[0])-2])<6:
+        random.shuffle(s)
+
+    return s[0]
+
 def draw_maze(screen):
    for row in range(len(maze)):
        for column in range(len(maze[0])):
@@ -105,9 +116,10 @@ def main(level, enemies):
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
     print("4: {}".format(pygame.display.get_init()))
     pygame.display.set_caption("Amazing Maze")
-    star_store = find_random_spot(maze)
-    hint_store = find_random_spot(maze)
-    #print("end")
+    #star_store = find_random_spot(maze)
+    #hint_store = find_random_spot(maze)
+    star_store = find_spot_center(maze)
+    hint_store = find_spot_center(maze)
 
     hintTimer = False
     enemyTimer = True
@@ -312,7 +324,7 @@ if __name__ == "__main__":
                 # green white
                 cell_colors = (144,238,144), (255, 255, 255), (255, 255, 0)
                 #enemy_position = find_random_spot(maze)
-                enemy_num = 1
+                enemy_num = 2
             elif level=='hard':
                 maze = maze_gen(18, 18)
                 object_size = (20, 20)
@@ -320,18 +332,19 @@ if __name__ == "__main__":
                 # blue white
                 cell_colors = (0,191,255), (255, 255, 255), (255, 255, 0)
                 #enemy_position = find_random_spot(maze)
-                enemy_num = 2
+                enemy_num = 5
             elif level=='insane':
                 maze = maze_gen(26, 26)
                 object_size = (15, 15)
                 cell_margin = 0.5
                 # red white
                 cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
-                enemy_num = 5
+                enemy_num = 10
 
             for i in range(enemy_num):
                 #print(i)
-                enemies.append(find_random_spot(maze))
+                #enemies.append(find_random_spot(maze))
+                enemies.append(find_spot_center(maze))
 
             main(level, enemies)
             print('end')
