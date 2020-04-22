@@ -116,9 +116,10 @@ def main(level, enemies):
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
     print("4: {}".format(pygame.display.get_init()))
     pygame.display.set_caption("Amazing Maze")
-    star_store = find_random_spot(maze)
-    hint_store = find_random_spot(maze)
-    #print("end")
+    #star_store = find_random_spot(maze)
+    #hint_store = find_random_spot(maze)
+    star_store = find_spot_center(maze)
+    hint_store = find_spot_center(maze)
 
     hintTimer = False
     enemyTimer = True
