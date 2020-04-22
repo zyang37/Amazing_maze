@@ -157,14 +157,14 @@ def main(level, enemies):
 
         # star
         if current_position==star_store:
-            star_store = find_random_spot(maze)
+            star_store = find_spot_center(maze)
             #delete_random_wall(maze)
             delete_random_surround_wall(maze, current_position)
             score+=1
 
         # when the player get hint position, show the right path for 5 seconds
         if current_position==hint_store:
-            hint_store = find_random_spot(maze)
+            hint_store = find_spot_center(maze)
             show_path(maze, current_position[1], current_position[0])
             start_ticks = pygame.time.get_ticks()
             hintTimer = True
