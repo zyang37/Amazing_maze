@@ -224,14 +224,14 @@ def main(level, enemies):
             fontB = pygame.font.SysFont("comicsansms", 150)
             fontS = pygame.font.SysFont("comicsansms", 45)
             GAMEOVER = fontB.render("GAME OVER!!!", True, (255,127,80))
-            ANYKEYS = fontS.render("Press any key to continue", True, (0, 128, 0))
+            ANYKEYS = fontS.render("Press any key to quit", True, (0, 128, 0))
             screen.blit(GAMEOVER,(resolution[0]/2 - GAMEOVER.get_width() // 2, resolution[0]/2.5 - GAMEOVER.get_height() // 2))
             screen.blit(ANYKEYS,(resolution[0]/2 - ANYKEYS.get_width() // 2, resolution[0]/2 - ANYKEYS.get_height() // 2))
         elif win:
             fontB = pygame.font.SysFont("comicsansms", 150)
             fontS = pygame.font.SysFont("comicsansms", 45)
             WIN = fontB.render("GOOD JOB!!!", True, (255,127,80))
-            ANYKEYS = fontS.render("Press any key to continue", True, (0, 128, 0))
+            ANYKEYS = fontS.render("Press any key to quit", True, (0, 128, 0))
             screen.blit(WIN,(resolution[0]/2 - WIN.get_width() // 2, resolution[0]/2.5 - WIN.get_height() // 2))
             screen.blit(ANYKEYS,(resolution[0]/2 - ANYKEYS.get_width() // 2, resolution[0]/2 - ANYKEYS.get_height() // 2))
 
@@ -295,80 +295,78 @@ if __name__ == "__main__":
     #level = levels[1]
     #win = 0
 
-    while 1:
-        #if win==0:
-        print('StartMenu')
-        stat, level = startMenu()
-        #print(stat, level)
+    #if win==0:
+    print('StartMenu')
+    stat, level = startMenu()
+    #print(stat, level)
 
-        if stat[0]:
-            # maze
-            resolution = (850, 850)
-            current_position = [0, 1]
-            score = 0
-            enemy_num = 0
-            enemies = []
+    if stat[0]:
+        # maze
+        resolution = (850, 850)
+        current_position = [0, 1]
+        score = 0
+        enemy_num = 0
+        enemies = []
 
-            #if win and level!="insane":
-            #    level = levels[levels.index(level) + 1]
-            if(stat[0] == 2):
-                temp = read_maze()
+        #if win and level!="insane":
+        #    level = levels[levels.index(level) + 1]
+        if(stat[0] == 2):
+            temp = read_maze()
 
-                if(temp != 0):
-                    maze = temp[0]
-                    level = temp[1]
-                    current_position = temp[2]
+            if(temp != 0):
+                maze = temp[0]
+                level = temp[1]
+                current_position = temp[2]
 
 
-            if level=='easy':
-                if(stat[0] == 1):
-                    maze = maze_gen(6, 6)
-                
-                object_size = (37, 37)
-                cell_margin = 0.5
-                # pink white
-                cell_colors = (255, 192, 203), (255, 255, 255), (255, 255, 0)
-            elif level=='medium':
-                if(stat[0] == 1):
-                    maze = maze_gen(10, 10)
-
-                object_size = (30, 30)
-                cell_margin = 0.5
-                # green white
-                cell_colors = (144,238,144), (255, 255, 255), (255, 255, 0)
-                #enemy_position = find_random_spot(maze)
-                enemy_num = 2
-            elif level=='hard':
-                if(stat[0] == 1):
-                    maze = maze_gen(18, 18)
-
-                object_size = (20, 20)
-                cell_margin = 0.5
-                # blue white
-                cell_colors = (0,191,255), (255, 255, 255), (255, 255, 0)
-                #enemy_position = find_random_spot(maze)
-                enemy_num = 5
-            elif level=='insane':
-                if(stat[0] == 1):
-                    maze = maze_gen(26, 26)
-
-                object_size = (15, 15)
-                cell_margin = 0.5
-                # red white
-                cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
-                enemy_num = 10
-
+        if level=='easy':
+            if(stat[0] == 1):
+                maze = maze_gen(6, 6)
             
+            object_size = (37, 37)
+            cell_margin = 0.5
+            # pink white
+            cell_colors = (255, 192, 203), (255, 255, 255), (255, 255, 0)
+        elif level=='medium':
+            if(stat[0] == 1):
+                maze = maze_gen(10, 10)
 
-            for i in range(enemy_num):
-                #print(i)
-                #enemies.append(find_random_spot(maze))
-                enemies.append(find_spot_center(maze))
+            object_size = (30, 30)
+            cell_margin = 0.5
+            # green white
+            cell_colors = (144,238,144), (255, 255, 255), (255, 255, 0)
+            #enemy_position = find_random_spot(maze)
+            enemy_num = 2
+        elif level=='hard':
+            if(stat[0] == 1):
+                maze = maze_gen(18, 18)
 
-            main(level, enemies)
-            print('end')
-        else:
-            break
+            object_size = (20, 20)
+            cell_margin = 0.5
+            # blue white
+            cell_colors = (0,191,255), (255, 255, 255), (255, 255, 0)
+            #enemy_position = find_random_spot(maze)
+            enemy_num = 5
+        elif level=='insane':
+            if(stat[0] == 1):
+                maze = maze_gen(26, 26)
+
+            object_size = (15, 15)
+            cell_margin = 0.5
+            # red white
+            cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
+            enemy_num = 10
+
+        
+
+        for i in range(enemy_num):
+            #print(i)
+            #enemies.append(find_random_spot(maze))
+            enemies.append(find_spot_center(maze))
+
+        main(level, enemies)
+        print('end')
+   
 
     
     pygame.quit()
