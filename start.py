@@ -137,6 +137,7 @@ def main(level, enemies):
                 elif key == K_LEFT:
                     move(-1, 0)
             elif event.type == QUIT:
+                print("dsdasdasdasda")
                 pygame.quit()
                 sys.exit()
                 #return
@@ -337,5 +338,7 @@ if __name__ == "__main__":
         else:
             break
 
+    
     pygame.quit()
+    
     sys.exit()

@@ -73,3 +73,6 @@ def clear_path(maze):
         for col in range(len(maze[0])):
             if (maze[row][col] == 2):
                 maze[row][col] = 1;
+
+def save_game(maze):
+    
