@@ -1,9 +1,7 @@
 # **Amazing Maze**
-### Run
-- install Pygame  
-    sh setup.sh
-- Have fun  
-    python3 start.py
+### Run  
+    sh setup.sh  //install Pygame 
+    python3 start.py  //have fun! 
 
 ### Current Progress
 - Moving the character
