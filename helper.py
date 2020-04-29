@@ -1,8 +1,14 @@
+'''
+Here are some helper functions
+'''
+
 import random
 
+# Calculating the euclidean distance between two points
 def distance(x1, x2):
     return ((x1[0]-x2[0])**2 + (x1[1]-x2[1])**2)**0.5
 
+# find a random wall that is near player, and remove it
 def delete_random_surround_wall(maze, pos):
     total = len(maze) * len(maze[0])
     count = 0
@@ -31,6 +37,7 @@ def delete_random_surround_wall(maze, pos):
         maze[rp[1]][rp[0]] = 1
         print(distance([rp[1],rp[0]], pos))
 
+# find a random wall within the current maze and remove it
 def delete_random_wall(maze):
     total = len(maze) * len(maze[0])
     count = 0
@@ -50,6 +57,7 @@ def Arandom_move():
     direction = random.choice(directions)
     return direction
 
+# Hint Bell helper function
 def show_path(maze, row, col):
     if (row == len(maze) - 1 and col == len(maze[0]) - 2 ):
         return True
@@ -68,15 +76,17 @@ def show_path(maze, row, col):
     else:
         return False
 
+# after 5 sec will remove hint
 def clear_path(maze):
     for row in range(len(maze)):
         for col in range(len(maze[0])):
             if (maze[row][col] == 2):
                 maze[row][col] = 1;
 
+# helper function #1 for load game buttom
 def save_game(maze, level, current_position):
     f = open("savedGame/save.txt","w+")
-    
+
     #write the current position
     f.write("%d %d\r\n" % (current_position[0], current_position[1]))
     #write the difficulty level
@@ -85,11 +95,12 @@ def save_game(maze, level, current_position):
     for i in maze:
         for j in i:
             f.write("%d " % j)
-        f.write("\r\n") 
+        f.write("\r\n")
 
+# helper function #2 for load game buttom
 def read_maze():
     maze = []
-    
+
     f = open("savedGame/save.txt", "r")
 
     if f.mode != 'r':
@@ -100,16 +111,14 @@ def read_maze():
     level = f.readline()[:-1]
 
     f1 = f.readlines()
-   
+
 
     for x in f1:
         temp = []
         for y in x.split():
             temp.append(int(y))
-        
+
         maze.append(temp)
-    
+
 
     return maze, level, current_position
-
-    

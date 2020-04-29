@@ -16,6 +16,7 @@ def find_random_spot(listmaze):
     random.shuffle(s)
     return s[0]
 
+# make sure objects are away from exit and Starting position
 def find_spot_center(listmaze):
     s = []
     for i in range(len(listmaze)):
@@ -27,6 +28,7 @@ def find_spot_center(listmaze):
 
     return s[0]
 
+# keep updating the maze
 def draw_maze(screen):
    for row in range(len(maze)):
        for column in range(len(maze[0])):
@@ -40,6 +42,8 @@ def get_cell_rect(coordinates, screen):
    adjusted_width = cell_width - cell_margin
    return pygame.Rect(row * cell_width + cell_margin / 2, column * cell_width + cell_margin / 2, adjusted_width, adjusted_width)
 
+
+# drawing all the objects
 def draw_player(playerImg, screen):
    rect = playerImg.get_rect()
    rect.center = get_cell_rect(current_position, screen).center
@@ -56,6 +60,7 @@ def drawScore(score, screen):
     scoreRect.topleft = (700,5)
     screen.blit(scoreSurf,scoreRect)
 
+# moving Character
 def move(dx, dy):
     x, y = current_position
     nx, ny = x + dx, y + dy
@@ -63,6 +68,7 @@ def move(dx, dy):
        current_position[0] = nx
        current_position[1] = ny
 
+# moving enemy
 def move_enemy(enemy_position):
     tmp = Arandom_move()
     x = enemy_position[0]
@@ -75,6 +81,7 @@ def move_enemy(enemy_position):
 
 # ========================================== main ==========================================
 '''
+A sample maze, return from maze_gen()
 maze = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0],
         [0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0],
@@ -88,17 +95,21 @@ maze = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 '''
 
+# game play
 def main(level, enemies):
     global score, BASICFONT, FPSCLOCK, maze, resolution
 
     pygame.init()
 
+    # loading custom images for all objects
     icon = pygame.image.load('img/icon.png')
     star = pygame.image.load('img/shovel.png')
     enemy = pygame.image.load('img/enemy.png')
     playerImg = pygame.image.load('img/mushroom.png')
     exitlogo = pygame.image.load('img/exit.png')
     hint = pygame.image.load('img/hint.png')
+
+    # set size for each object
     playerImg = pygame.transform.scale(playerImg, object_size)
     star = pygame.transform.scale(star,object_size)
     enemy = pygame.transform.scale(enemy,object_size)
@@ -118,6 +129,8 @@ def main(level, enemies):
     pygame.display.set_caption("Amazing Maze")
     #star_store = find_random_spot(maze)
     #hint_store = find_random_spot(maze)
+
+    # Initial positions for hint bell and Shovel
     star_store = find_spot_center(maze)
     hint_store = find_spot_center(maze)
 
@@ -131,6 +144,8 @@ def main(level, enemies):
     win = 0
 
     #print("start loop")
+
+    # GAME LOOP
     while True:
         for event in pygame.event.get():
             if event.type == KEYDOWN and (win or over):
@@ -140,6 +155,7 @@ def main(level, enemies):
                 return
             elif event.type == KEYDOWN:
                 key = event.key
+                # moving Character by pressing arrow keys
                 if key == K_UP:
                     move(0, -1)
                 elif key == K_RIGHT:
@@ -149,13 +165,15 @@ def main(level, enemies):
                 elif key == K_LEFT:
                     move(-1, 0)
             elif event.type == QUIT:
+                # save game when quit. For load game funciton
                 save_game(maze, level, current_position)
                 print("maze saved")
                 pygame.quit()
                 sys.exit()
                 #return
 
-        # star
+        # when player pick up Shovel, Destroyed a random Surrounding wall
+        # Find another spot for the Shovel
         if current_position==star_store:
             star_store = find_spot_center(maze)
             #delete_random_wall(maze)
@@ -163,6 +181,7 @@ def main(level, enemies):
             score+=1
 
         # when the player get hint position, show the right path for 5 seconds
+        # then Find another spot for the the hint bell
         if current_position==hint_store:
             hint_store = find_spot_center(maze)
             show_path(maze, current_position[1], current_position[0])
@@ -219,6 +238,7 @@ def main(level, enemies):
                 print("WIN\n")
             win = 1
 
+        # End-game message
         # gameover or win
         if over:
             fontB = pygame.font.SysFont("comicsansms", 150)
@@ -240,62 +260,13 @@ def main(level, enemies):
 
 
 if __name__ == "__main__":
-    '''
-    # Game loop
-    stat, level = startMenu()
-    print(stat[0])
-    print(level)
 
-    if stat[0]:
-        # maze
-        resolution = (850, 850)
-        current_position = [0, 1]
-        score = 0
-        enemy_num = 0
-        enemies = []
-
-        if level=='easy':
-            maze = maze_gen(6, 6)
-            object_size = (37, 37)
-            cell_margin = 0.5
-            # pink white
-            cell_colors = (255, 192, 203), (255, 255, 255)
-        elif level=='medium':
-            maze = maze_gen(10, 10)
-            object_size = (30, 30)
-            cell_margin = 0.5
-            # green white
-            cell_colors = (144,238,144),(255, 255, 255)
-            #enemy_position = find_random_spot(maze)
-            enemy_num = 1
-        elif level=='hard':
-            maze = maze_gen(18, 18)
-            object_size = (20, 20)
-            cell_margin = 0.5
-            # blue white
-            cell_colors = (0,191,255), (255, 255, 255)
-            #enemy_position = find_random_spot(maze)
-            enemy_num = 2
-        elif level=='insane':
-            maze = maze_gen(26, 26)
-            object_size = (15, 15)
-            cell_margin = 0.5
-            # red white
-            cell_colors = (220,20,60), (169,169,169)
-            enemy_num = 5
-
-        for i in range(enemy_num):
-            #print(i)
-            enemies.append(find_random_spot(maze))
-
-        main(level, enemies)
-    '''
     #levels = ['easy', 'medium', 'hard', 'insane']
     #stat = [0]
     #level = levels[1]
     #win = 0
 
-    #if win==0:
+    # Run Start Menu
     print('StartMenu')
     stat, level = startMenu()
     #print(stat, level)
@@ -308,8 +279,8 @@ if __name__ == "__main__":
         enemy_num = 0
         enemies = []
 
-        #if win and level!="insane":
-        #    level = levels[levels.index(level) + 1]
+        # if play press load game
+        # continue last game play
         if(stat[0] == 2):
             temp = read_maze()
 
@@ -318,11 +289,13 @@ if __name__ == "__main__":
                 level = temp[1]
                 current_position = temp[2]
 
-
+        # setup objects' sizes
+        # setup #Enemies beased on level
+        # setup color beased on level
         if level=='easy':
             if(stat[0] == 1):
                 maze = maze_gen(6, 6)
-            
+
             object_size = (37, 37)
             cell_margin = 0.5
             # pink white
@@ -357,18 +330,15 @@ if __name__ == "__main__":
             cell_colors = (220,20,60), (169,169,169), (0, 0, 0)
             enemy_num = 10
 
-        
-
         for i in range(enemy_num):
             #print(i)
             #enemies.append(find_random_spot(maze))
             enemies.append(find_spot_center(maze))
 
+        # RUN the game
         main(level, enemies)
         print('end')
-   
 
-    
     pygame.quit()
-    
+
     sys.exit()

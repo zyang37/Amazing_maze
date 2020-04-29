@@ -1,3 +1,7 @@
+'''
+Generate a random maze based on the given size
+'''
+
 import random
 from disjoint_rank import *
 
@@ -5,6 +9,8 @@ def maze_gen(r, c):
     maze = []
 
     # Initialize the maze
+    # 2D list
+    # 1 is path 0 is wall
     temp = [1]*(r*2-1)
     maze = []
     for i in range(c*2-1):
@@ -21,6 +27,7 @@ def maze_gen(r, c):
     walls = []
     d = DisjointSetByRankWPC(r*c)
 
+    # store all walls to a list
     for row in range(r-1):
         for col in range(c):
             c1 = row*c + col
@@ -32,6 +39,9 @@ def maze_gen(r, c):
             walls.append(c1)
 
     ncomp = r*c;
+
+    # randomly choose walls from the list
+    # if not connected, remove it
     while ncomp > 1:
         c1 = random.choice(walls)
         tmp = c1
@@ -69,6 +79,7 @@ def maze_gen(r, c):
         temp.append(0)
         maze[i] = temp
 
+    # set Starting position and exit
     maze[1][0] = 1
     maze[-2][-1] = 1
 

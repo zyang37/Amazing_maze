@@ -1,3 +1,7 @@
+'''
+Start Menu
+'''
+
 import tkinter as tk
 from tkinter import *
 #from tkinter import Text
@@ -18,22 +22,29 @@ def startMenu():
     root = tk.Tk()
     root.title("Amazing Maze")
 
+    # window size
     canvas = tk.Canvas(root, height = 850, width = 850)
     canvas.pack(fill=tk.BOTH, expand=tk.YES)
 
+    # setup background image and Position
     background_image = tk.PhotoImage(file = "backgrounds/maze.png")
     background_label = tk.Label(root, image=background_image)
     background_label.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 
+    # App icon
     icon = tk.PhotoImage(file = "img/icon.png")
     root.iconphoto(False, icon)
 
+    # layout
     canvas.grid()
 
+    # Text
     fontStyle = tkFont.Font(family="Lucida Grande", size=60)
     gameLabel = tk.Label(root, bg = 'white', text="Amazing Maze", font = fontStyle)
     gameLabel.place(relx=0.5, rely=0.1, anchor=CENTER)
 
+    # add Buttons
+    # star, load and a dropdown menu 
     startButton = tk.Button(root, bg="white", bd = 3, text = "New game", command = lambda:[start(gameStat), root.destroy()], padx = 50, pady = 30)
     startButton.place(relx=0.25, rely=0.89, anchor=CENTER)
 
@@ -49,7 +60,9 @@ def startMenu():
 
     canvas.configure(background='#90EE90')
     gameLabel.config(bg='#90EE90')
+
     # on change dropdown value
+    # change color when player slect a different levels
     def change_dropdown(*args):
         print(tkvar.get())
         if tkvar.get()=='easy':
@@ -80,8 +93,11 @@ def startMenu():
     '''
 
     root.mainloop()
+
+    # return game status and level
     return gameStat, tkvar.get()
 
+# testing
 '''
 if __name__ == "__main__":
     stat, level = startMenu()
