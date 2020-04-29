@@ -1,3 +1,8 @@
+'''
+The is main program
+Run python3 start.py to play the game!
+'''
+
 import pygame , random
 from pygame.locals import *
 from maze_gen import *

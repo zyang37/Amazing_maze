@@ -1,5 +1,6 @@
 '''
 Generate a random maze based on the given size
+1 is path, 0 is wall 
 '''
 
 import random
