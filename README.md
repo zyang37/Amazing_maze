@@ -1,7 +1,14 @@
 # **Amazing Maze**
+NOTE: Some directories also contain the old/test code
+- disjoint_rank.py
+- helper.py
+- maze_gen.py
+- Startmenu.py
+- start.py
+
 ### Run  
-    sh setup.sh  //install Pygame 
-    python3 start.py  //have fun! 
+    sh setup.sh  //install Pygame
+    python3 start.py  //have fun!
 
 ### Current Progress
 - Moving the character

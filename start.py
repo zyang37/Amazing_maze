@@ -1,5 +1,5 @@
 '''
-The is main program
+The is the main program
 Run python3 start.py to play the game!
 '''
 

@@ -1,6 +1,8 @@
 '''
-Generate a random maze based on the given size
-1 is path, 0 is wall 
+This a script for Generating random mazes
+- will Generate a maze based on the given size
+- 1 is path, 0 is wall
+- return a 2D list
 '''
 
 import random
