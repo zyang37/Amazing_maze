@@ -8,10 +8,10 @@ from tkinter import *
 import tkinter.font as tkFont
 #from PIL import Image, ImageTk
 import os
-
+#Tells the game to start a new game
 def start(gameStat):
     gameStat[0] = 1
-
+#Tells the game to load game from savedGames folder.
 def load(gameStat):
     gameStat[0] = 2
 
@@ -97,7 +97,7 @@ def startMenu():
     # return game status and level
     return gameStat, tkvar.get()
 
-# testing
+# for testing
 '''
 if __name__ == "__main__":
     stat, level = startMenu()
